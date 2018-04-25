@@ -21,6 +21,7 @@ class LoginForm extends Component {
       username: '',
       password: '',
     };
+        console.log("login clicked");
 
     if (window.location.href.indexOf('success') > -1) {
       this.props.dispatch(setErrorMessage('Successfully signed up!'));
@@ -29,7 +30,8 @@ class LoginForm extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  onSubmit(e, pathname) {
+    onSubmit(e, pathname) {
+        
     e.preventDefault();
 
     if (pathname.indexOf('signup') > -1) {

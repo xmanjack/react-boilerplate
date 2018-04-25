@@ -24,7 +24,14 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
   render() {
     return (
       <div>
-        <FormattedMessage {...messages.header} />
+        <Form
+          data={this.props.formState}
+          dispatch={this.props.dispatch}
+          location={location}
+          history={this.props.history}
+          btnText="Login"
+          currentlySending={this.props.currentlySending}
+        />
       </div>
     );
   }
