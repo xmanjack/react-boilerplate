@@ -8,7 +8,15 @@ const selectLoginPageDomain = (state) => state.get('loginPage');
 /**
  * Other specific selectors
  */
+const makeSelectLoginUsername = () => createSelector(
+  selectLoginPageDomain,
+  (loginState) => loginState.get('username')
+);
 
+const makeSelectLoginPassword = () => createSelector(
+  selectLoginPageDomain,
+  (passwordState) => loginState.get('password')
+);
 
 /**
  * Default selector used by LoginPage
@@ -21,5 +29,7 @@ const makeSelectLoginPage = () => createSelector(
 
 export default makeSelectLoginPage;
 export {
-  selectLoginPageDomain,
+    selectLoginPageDomain,
+    makeSelectLoginUsername,
+    makeSelectLoginPassword,
 };
