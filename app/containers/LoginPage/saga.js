@@ -1,7 +1,7 @@
 // import { take, call, put, select } from 'redux-saga/effects';
 
 import { hashSync } from 'bcryptjs';
-import { browserHistory } from 'react-router';
+//import { browserHistory } from 'react-router';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { call, cancel, select, take, takeLatest, put, race, takeEvery } from 'redux-saga/effects';
 // import * as errorMessages from './errorMessages';
@@ -10,6 +10,9 @@ import { makeSelectUsername } from 'containers/HomePage/selectors';
 
 import auth from '../../utils/auth';
 import genSalt from '../../utils/salt';
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory();
 
 // export default function* defaultSaga() {
 //   // See example in containers/HomePage/saga.js
@@ -113,7 +116,9 @@ export function* callLogout() {
 }
 
 function forwardTo(location) {
-  browserHistory.push(location);
+    console.log(location);
+    history.push(location);
+    console.log("finish");
 }
 
 export default function* LoginData() {
