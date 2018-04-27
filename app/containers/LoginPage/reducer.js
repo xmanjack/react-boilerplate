@@ -15,6 +15,8 @@ import {
     SET_ERROR_MESSAGE,
     LOGOUT,
     CHANGE_FORM,
+    CHANGE_USERNAME,
+    CHANGE_PASSWORD,
 } from './constants';
 
 
@@ -29,7 +31,13 @@ const initialState = fromJS({
 });
 
 function loginPageReducer(state = initialState, action) {
-  switch (action.type) {
+    switch (action.type) {
+    case CHANGE_USERNAME:
+        return state
+            .set('username', action.name);
+    case CHANGE_PASSWORD:
+        return state
+            .set('password', action.password);
     case SENDING_REQUEST:
       console.log("sending request");
       return state

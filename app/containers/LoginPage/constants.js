@@ -12,3 +12,5 @@ export const SET_AUTH = 'app/LoginPage/SET_AUTH';
 export const SET_ERROR_MESSAGE = 'app/LoginPage/SET_ERROR_MESSAGE';
 export const LOGOUT = 'app/LoginPage/LOGOUT';
 export const CHANGE_FORM = 'app/LoginPage/CHANGE_FORM';
+export const CHANGE_USERNAME = 'app/LoginPage/CHANGE_USERNAME';
+export const CHANGE_PASSWORD = 'app/LoginPage/CHANGE_PASSWORD';

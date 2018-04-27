@@ -15,7 +15,7 @@ const makeSelectLoginUsername = () => createSelector(
 
 const makeSelectLoginPassword = () => createSelector(
   selectLoginPageDomain,
-  (passwordState) => loginState.get('password')
+  (passwordState) => passwordState.get('password')
 );
 
 /**

@@ -13,7 +13,23 @@ import {
     SET_ERROR_MESSAGE,
     LOGOUT,
     CHANGE_FORM,
+    CHANGE_USERNAME,
+    CHANGE_PASSWORD,
 } from './constants';
+
+export function changePassword(password) {
+  return {
+    type: CHANGE_PASSWORD,
+    password,
+  };
+}
+
+export function changeUsername(name) {
+  return {
+    type: CHANGE_USERNAME,
+    name,
+  };
+}
 
 export function defaultAction() {
   return {
@@ -29,7 +45,6 @@ export function sendingRequest(sending) {
 }
 
 export function login(username, password) {
-    console.log("action login");
     return {
     type: LOGIN,
     username,

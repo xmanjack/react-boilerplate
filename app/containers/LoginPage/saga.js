@@ -6,6 +6,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import { call, cancel, select, take, takeLatest, put, race, takeEvery } from 'redux-saga/effects';
 // import * as errorMessages from './errorMessages';
 import { selectLoginPageDomain, makeSelectLoginUsername, makeSelectLoginPassword } from './selectors';
+import { makeSelectUsername } from 'containers/HomePage/selectors';
 
 import auth from '../../utils/auth';
 import genSalt from '../../utils/salt';
@@ -54,25 +55,26 @@ export function* authorize({ newUser, username, password }) {
   } finally {
     yield put(sendingRequest(false));
   }
+    
 }
 
 export function* login() {
-  // const userDetails = yield select(selectLoginPageDomain());
-  const username = yield select(makeSelectLoginUsername);
-    const password = yield select(makeSelectLoginPassword);
+    // const userDetails = yield select(selectLoginPageDomain());
+    const username = yield select(makeSelectLoginUsername());
+    const password = yield select(makeSelectLoginPassword());
+    const newUser = false;
     console.log(username);
-  // const newUser = false;
-  //   console.log("fake login");
-  // const winner = yield race({
-  //   auth: call(authorize, { newUser, username, password }),
-  //   logout: take(LOGOUT),
-  // });
+    console.log("fake login");
+  const winner = yield race({
+    auth: call(authorize, { newUser, username, password }),
+    logout: take(LOGOUT),
+  });
 
-  // if (winner.auth) {
-  //   yield put(setAuthState(true));
-  //   yield put(changeForm('', ''));
-  //   forwardTo('/dashboard');
-  // }
+  if (winner.auth) {
+    yield put(setAuthState(true));
+    yield put(changeForm('', ''));
+    forwardTo('/dashboard');
+  }
 }
 
 export function* signup() {
