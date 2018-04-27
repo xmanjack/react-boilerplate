@@ -10,9 +10,12 @@ import { makeSelectUsername } from 'containers/HomePage/selectors';
 
 import auth from '../../utils/auth';
 import genSalt from '../../utils/salt';
-import createHistory from 'history/createBrowserHistory';
 
-const history = createHistory();
+//import { push } from 'react-router-redux';
+
+//import createHistory from 'history/createBrowserHistory';
+
+//const history = createHistory();
 
 // export default function* defaultSaga() {
 //   // See example in containers/HomePage/saga.js
@@ -61,22 +64,25 @@ export function* authorize({ newUser, username, password }) {
     
 }
 
-export function* login() {
+export function* login( dispatch) {
+    console.log(dispatch);
     // const userDetails = yield select(selectLoginPageDomain());
     const username = yield select(makeSelectLoginUsername());
     const password = yield select(makeSelectLoginPassword());
     const newUser = false;
     console.log(username);
-    console.log("fake login");
-  const winner = yield race({
-    auth: call(authorize, { newUser, username, password }),
-    logout: take(LOGOUT),
-  });
+
+    const winner = yield race({
+	auth: call(authorize, { newUser, username, password }),
+	logout: take(LOGOUT),
+    });
 
   if (winner.auth) {
     yield put(setAuthState(true));
     yield put(changeForm('', ''));
-    forwardTo('/dashboard');
+      forwardTo('/dashboard');
+//    dispatch(push('/dashboard'));
+
   }
 }
 
@@ -117,7 +123,7 @@ export function* callLogout() {
 
 function forwardTo(location) {
     console.log(location);
-    history.push(location);
+//    push(location);
     console.log("finish");
 }
 

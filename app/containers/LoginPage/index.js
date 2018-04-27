@@ -26,6 +26,7 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { login, changeUsername, changePassword } from './actions';
+import { push } from 'react-router-redux';
 
 export class LoginPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -93,8 +94,9 @@ function mapDispatchToProps(dispatch) {
       onChangePassword: (evt) => dispatch(changePassword(evt.target.value)),
       onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-       dispatch(login());
-    },
+	  dispatch(login());
+	  dispatch(push('/dashboard'));
+      },
   };
 }
 
