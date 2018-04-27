@@ -1,7 +1,7 @@
 // import { take, call, put, select } from 'redux-saga/effects';
 
 import { hashSync } from 'bcryptjs';
-//import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { call, cancel, select, take, takeLatest, put, race, takeEvery } from 'redux-saga/effects';
 // import * as errorMessages from './errorMessages';
@@ -11,15 +11,8 @@ import { makeSelectUsername } from 'containers/HomePage/selectors';
 import auth from '../../utils/auth';
 import genSalt from '../../utils/salt';
 
-//import { push } from 'react-router-redux';
 
-//import createHistory from 'history/createBrowserHistory';
-
-//const history = createHistory();
-
-// export default function* defaultSaga() {
-//   // See example in containers/HomePage/saga.js
-// }
+import { push } from 'react-router-redux';
 
 import {
     SENDING_REQUEST,
@@ -64,8 +57,7 @@ export function* authorize({ newUser, username, password }) {
     
 }
 
-export function* login( dispatch) {
-    console.log(dispatch);
+export function* login() {
     // const userDetails = yield select(selectLoginPageDomain());
     const username = yield select(makeSelectLoginUsername());
     const password = yield select(makeSelectLoginPassword());
@@ -80,9 +72,9 @@ export function* login( dispatch) {
   if (winner.auth) {
     yield put(setAuthState(true));
     yield put(changeForm('', ''));
-      forwardTo('/dashboard');
+//      forwardTo('/dashboard');
 //    dispatch(push('/dashboard'));
-
+    yield put(push('/dashboard'));
   }
 }
 

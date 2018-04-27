@@ -95,7 +95,7 @@ function mapDispatchToProps(dispatch) {
       onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
 	  dispatch(login());
-	  dispatch(push('/dashboard'));
+	//  dispatch(push('/dashboard'));
       },
   };
 }
