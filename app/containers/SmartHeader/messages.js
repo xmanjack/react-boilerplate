@@ -1,13 +1,25 @@
 /*
- * SmartHeader Messages
+ * HomePage Messages
  *
- * This contains all the text for the SmartHeader component.
+ * This contains all the text for the HomePage component.
  */
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  header: {
-    id: 'app.containers.SmartHeader.header',
-    defaultMessage: 'This is SmartHeader container !',
+  home: {
+    id: 'boilerplate.components.Header.home',
+    defaultMessage: 'Home',
+  },
+  features: {
+    id: 'boilerplate.components.Header.features',
+    defaultMessage: 'Features',
+  },
+  login: {
+    id: 'boilerplate.components.Header.login',
+    defaultMessage: 'Login',
+  },
+  logout: {
+    id: 'boilerplate.components.Header.logout',
+    defaultMessage: 'Logout',
   },
 });

@@ -31,49 +31,47 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
   render() {
     return (
       <div>
-
-            <form onSubmit={this.props.onSubmitForm}>
-        <Container columns="2">
-          <GridItem row="1" col="1 / span 2">
-            <ErrorMessage />
-          </GridItem>
-          <GridItem row="2" col="1 / span 2">
-            <Input inputType="textOnly" name="username" label="Name" placeholder="Username"
-                  id="username"
-                  value={this.props.username}
-        onChange={this.props.onChangeUsername}
-        required
-            />
-          </GridItem>
-          <GridItem row="3" col="1 / span 2">
-            <Input inputType="password" name="password" label="Password" placeholder="••••••••"
-        id="password"
-        value={this.props.password}
-        onChange={this.props.onChangePassword}
-        required
-            />
-          </GridItem>
-          <GridItem row="4" col="1">
-            {
-              this.props.currentlySending ? (
-                <Button submit fill color="primary">Loading!</Button>
-              ) : (
-                <button>Login</button>
-              )
-            }
-          </GridItem>
-          <GridItem row="4" col="2" center>
-            {
-              (this.props.btnText === 'Signup') ? (
-                <A href="/login">Existing User?</A>
-              ) : (
-                <A href="/signup">New User?</A>
-              )
-            }
-          </GridItem>
+        <form onSubmit={this.props.onSubmitForm}>
+          <Container columns="2">
+            <GridItem row="1" col="1 / span 2">
+              <ErrorMessage />
+            </GridItem>
+            <GridItem row="2" col="1 / span 2">
+              <Input inputType="textOnly" name="username" label="Name" placeholder="Username"
+                     id="username"
+                     value={this.props.username}
+                     onChange={this.props.onChangeUsername}
+                     required
+                     />
+            </GridItem>
+            <GridItem row="3" col="1 / span 2">
+              <Input inputType="password" name="password" label="Password" placeholder="••••••••"
+                     id="password"
+                     value={this.props.password}
+                     onChange={this.props.onChangePassword}
+                     required
+                     />
+            </GridItem>
+            <GridItem row="4" col="1">
+              {
+                this.props.currentlySending ? (
+                  <Button submit fill color="primary">Loading!</Button>
+                ) : (
+                  <button>Login</button>
+                )
+              }
+      </GridItem>
+        <GridItem row="4" col="2" center>
+        {
+          (this.props.btnText === 'Signup') ? (
+            <A href="/login">Existing User?</A>
+          ) : (
+            <A href="/signup">New User?</A>
+          )
+        }
+      </GridItem>
         </Container>
-      </form>
-
+        </form>
       </div>
     );
   }

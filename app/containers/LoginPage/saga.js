@@ -117,7 +117,7 @@ function forwardTo(location) {
 }
 
 export default function* LoginData() {
-  yield takeLatest(LOGOUT, logout);
+  yield takeLatest(LOGOUT, callLogout);
   yield takeLatest(LOGIN, login);
   yield takeLatest(SIGNUP, signup);
 }
