@@ -14,7 +14,8 @@ import { makeSelectUsername } from 'containers/HomePage/selectors';
  */
 export function* getRepos() {
   // Select username from store
-  const username = yield select(makeSelectUsername());
+    const username = yield select(makeSelectUsername());
+    console.log(username);
   const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
 
   try {

@@ -26,8 +26,6 @@ const server = {
     const userCheck = this.doesUserExist(username);
     const userExists = userCheck.userExists;
     const dbPassword = userCheck.hash;
-      console.log(username, password);
-      console.log(userExists);
     return new Promise((resolve, reject) => {
       // If the user exists and the password fits log the user in and resolve
       if (userExists && compareSync(password, dbPassword)) {
@@ -90,8 +88,6 @@ const server = {
     this.getUsers();
     let userExists = false;
     let hash = '';
-      console.log(users);
-      console.log(username);
     users.forEach((user) => { // eslint-disable-line consistent-return
       if (user.username.toLowerCase() === username.toLowerCase()) {
         userExists = true;

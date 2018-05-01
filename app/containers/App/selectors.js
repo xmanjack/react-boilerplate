@@ -33,6 +33,11 @@ const makeSelectLocation = () => createSelector(
   (routeState) => routeState.get('location').toJS()
 );
 
+const makeSelectLoginloggedIn = () => createSelector(
+  selectGlobal,
+  (loginState) => loginState.get('loggedIn')
+);
+
 export {
   selectGlobal,
   makeSelectCurrentUser,
@@ -40,4 +45,5 @@ export {
   makeSelectError,
   makeSelectRepos,
   makeSelectLocation,
+  makeSelectLoginloggedIn,
 };

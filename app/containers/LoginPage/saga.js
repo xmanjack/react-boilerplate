@@ -5,14 +5,14 @@ import { browserHistory } from 'react-router';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { call, cancel, select, take, takeLatest, put, race, takeEvery } from 'redux-saga/effects';
 // import * as errorMessages from './errorMessages';
-import { selectLoginPageDomain } from './selectors';
+import { selectLoginPageDomain, makeSelectLoginUsername, makeSelectLoginPassword } from './selectors';
+import { makeSelectUsername } from 'containers/HomePage/selectors';
 
 import auth from '../../utils/auth';
 import genSalt from '../../utils/salt';
 
-// export default function* defaultSaga() {
-//   // See example in containers/HomePage/saga.js
-// }
+
+import { push } from 'react-router-redux';
 
 import {
     SENDING_REQUEST,
@@ -43,34 +43,33 @@ export function* authorize({ newUser, username, password }) {
     if (newUser) {
       response = yield call(auth.signup, username, hash);
     } else {
-        console.log("sagas.js", username);
       response = yield call(auth.login, username, hash);
     }
 
     return response;
   } catch (error) {
-    yield put(setErrorMessage(error.message));
+      yield put(setErrorMessage(error.message));
     return false;
   } finally {
     yield put(sendingRequest(false));
   }
+    
 }
 
 export function* login() {
-  const userDetails = yield select(makeSelectFormState());
-  const username = userDetails.get('username');
-  const password = userDetails.get('password');
-  const newUser = false;
-    console.log("fake login");
-  const winner = yield race({
-    auth: call(authorize, { newUser, username, password }),
-    logout: take(LOGOUT),
-  });
+    const username = yield select(makeSelectLoginUsername());
+    const password = yield select(makeSelectLoginPassword());
+    const newUser = false;
+
+    const winner = yield race({
+	auth: call(authorize, { newUser, username, password }),
+	logout: take(LOGOUT),
+    });
 
   if (winner.auth) {
-    yield put(setAuthState(true));
-    yield put(changeForm('', ''));
-    forwardTo('/dashboard');
+      yield put(setAuthState(true));
+      yield put(changeForm('', ''));
+      yield put(push('/features'));
   }
 }
 
@@ -81,7 +80,6 @@ export function* signup() {
   const newUser = true;
 
   const response = yield call(authorize, { newUser, username, password });
-  console.log(response);
 
   if (response) {
     yield put(setAuthState(true));
@@ -103,18 +101,17 @@ export function* logout() { // eslint-disable-line consistent-return
 }
 
 export function* callLogout() {
-    console.log("callLogout XXXXXX ");
   yield put(setAuthState(false));
   yield call(logout);
   forwardTo('/');
 }
 
 function forwardTo(location) {
-  browserHistory.push(location);
+//    yield put(push(location));
 }
 
 export default function* LoginData() {
-  yield takeLatest(LOGOUT, logout);
+  yield takeLatest(LOGOUT, callLogout);
   yield takeLatest(LOGIN, login);
   yield takeLatest(SIGNUP, signup);
 }
