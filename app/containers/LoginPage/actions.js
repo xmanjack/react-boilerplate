@@ -59,7 +59,6 @@ export function signup(username, password) {
 }
 
 export function setAuthState(newState) {
-  console.log("set auth state =", newState);
   return {
     type: SET_AUTH,
     newState,

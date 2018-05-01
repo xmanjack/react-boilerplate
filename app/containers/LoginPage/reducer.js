@@ -37,7 +37,6 @@ function loginPageReducer(state = initialState, action) {
         return state
         .set('password', action.password);
     case SENDING_REQUEST:
-      console.log("sending request");
       return state
         .set('currentlySending', action.sending);
     case SIGNUP:
@@ -45,17 +44,14 @@ function loginPageReducer(state = initialState, action) {
         .setIn([ 'username'], action.username)
         .setIn([ 'password'], action.password);
     case SET_AUTH:
-      console.log("set auth =", action.newState);
       return state
         .setIn(['loggedIn'], action.newState);
     case SET_ERROR_MESSAGE:
       return state
         .set('errorMessage', action.message);
     case LOGOUT:
-      console.log("reducer LOGOUT");
       return state
         .setIn([ 'username'], '')
-//        .setIn(['loggedIn'], false)
         .setIn([ 'password'], '');
     default:
       return state;

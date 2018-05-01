@@ -43,16 +43,12 @@ export function* authorize({ newUser, username, password }) {
     if (newUser) {
       response = yield call(auth.signup, username, hash);
     } else {
-        console.log("sagas.js", username);
-	console.log("sagas.js", hash);
-	response = yield call(auth.login, username, hash);
-	console.log("response is", response);
+      response = yield call(auth.login, username, hash);
     }
 
     return response;
   } catch (error) {
       yield put(setErrorMessage(error.message));
-      console.log("error.message", error.message);
     return false;
   } finally {
     yield put(sendingRequest(false));
@@ -84,7 +80,6 @@ export function* signup() {
   const newUser = true;
 
   const response = yield call(authorize, { newUser, username, password });
-  console.log(response);
 
   if (response) {
     yield put(setAuthState(true));
@@ -106,7 +101,6 @@ export function* logout() { // eslint-disable-line consistent-return
 }
 
 export function* callLogout() {
-    console.log("callLogout XXXXXX ");
   yield put(setAuthState(false));
   yield call(logout);
   forwardTo('/');

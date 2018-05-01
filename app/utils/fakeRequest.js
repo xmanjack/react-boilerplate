@@ -5,7 +5,6 @@ const fakeRequest = {
   post(endpoint, data) { // eslint-disable-line consistent-return
     switch (endpoint) {
     case '/login': {
-        console.log("fakeServer", data);
         return server.login(data.username, data.password);
       }
       case '/signup':

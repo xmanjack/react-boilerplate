@@ -11,10 +11,10 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import A from './A';
-import Img from './Img';
-import NavBar from './NavBar';
-import HeaderLink from './HeaderLink';
+import A from 'components/Header/A';
+import Img from 'components/Header/Img';
+import NavBar from 'components/Header/NavBar';
+import HeaderLink from 'components/Header/HeaderLink';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -28,16 +28,12 @@ import saga from 'containers/LoginPage/saga';
 export class SmartHeader extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const LoginOrLogout = () => {
-      console.log(this.props.loggedIn);
       switch(this.props.loggedIn){
       case true:
         return (
           <HeaderLink onClick={() => this.props.dispatch(logout())} to="/">
 	    <FormattedMessage {...messages.logout} />
           </HeaderLink>
-/*	  <HeaderLink to="/test1">
-	    <FormattedMessage {...messages.logout} />
-	  </HeaderLink>*/
         );
         break;
       case false:
