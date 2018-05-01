@@ -10,6 +10,8 @@ import HeaderLink from './HeaderLink';
 import Banner from './banner.jpg';
 import messages from './messages';
 import { logout } from 'containers/LoginPage/actions';
+import { makeSelectLoginloggedIn } from 'containers/LoginPage/selectors';
+import { createStructuredSelector } from 'reselect';
 
 //import LogoutButton from 'containers/LogoutButton';
 
@@ -71,6 +73,12 @@ function mapStateToProps(state) {
     loggedIn: state.getIn(['global', 'loggedIn']),
   };
 }
+
+// const mapStateToProps = createStructuredSelector({
+//     loggedIn:makeSelectLoginloggedIn(),
+// });
+
+
 
 Header.propTypes = {
   dispatch: PropTypes.func,

@@ -18,6 +18,12 @@ const makeSelectLoginPassword = () => createSelector(
   (passwordState) => passwordState.get('password')
 );
 
+const makeSelectLoginloggedIn = () => createSelector(
+  selectLoginPageDomain,
+  (loginState) => loginState.get('loggedIn')
+);
+
+
 /**
  * Default selector used by LoginPage
  */
@@ -32,4 +38,5 @@ export {
     selectLoginPageDomain,
     makeSelectLoginUsername,
     makeSelectLoginPassword,
+    makeSelectLoginloggedIn,
 };
