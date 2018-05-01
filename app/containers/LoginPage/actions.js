@@ -44,11 +44,9 @@ export function sendingRequest(sending) {
   };
 }
 
-export function login(username, password) {
+export function login() {
     return {
     type: LOGIN,
-    username,
-    password,
   };
 }
 

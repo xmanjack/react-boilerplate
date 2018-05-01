@@ -18,4 +18,8 @@ export default defineMessages({
     id: 'boilerplate.components.Header.login',
     defaultMessage: 'Login',
   },
+  logout: {
+    id: 'boilerplate.components.Header.logout',
+    defaultMessage: 'Logout',
+  },
 });

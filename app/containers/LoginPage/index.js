@@ -13,15 +13,14 @@ import { compose } from 'redux';
 
 import A from 'components/A';
 import Button from 'components/Button';
-//import Form from 'containers/HomePage/Form';
 import { Container, GridItem } from 'components/Grid';
 import ErrorMessage from 'components/ErrorMessage';
-//import Input from 'containers/HomePage/Input';
 import Input from 'components/Input';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import selectLoginPageDomain from './selectors';
+import  makeSelectLoginUsername  from './selectors';
+//import { selectLoginPageDomain, makeSelectLoginUsername,makeSelectLoginPassword }  from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -81,11 +80,13 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
 }
 
 LoginPage.propTypes = {
-  onSubmitForm: PropTypes.func.isRequired,
+    onSubmitForm: PropTypes.func.isRequired,
+//    username: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
-  loginpage: selectLoginPageDomain(),
+//    loginpage: selectLoginPageDomain(),
+//    username: makeSelectLoginUsername(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -95,7 +96,6 @@ function mapDispatchToProps(dispatch) {
       onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
 	  dispatch(login());
-	//  dispatch(push('/dashboard'));
       },
   };
 }

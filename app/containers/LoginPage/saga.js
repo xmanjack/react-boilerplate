@@ -44,12 +44,15 @@ export function* authorize({ newUser, username, password }) {
       response = yield call(auth.signup, username, hash);
     } else {
         console.log("sagas.js", username);
-      response = yield call(auth.login, username, hash);
+	console.log("sagas.js", hash);
+	response = yield call(auth.login, username, hash);
+	console.log("response is", response);
     }
 
     return response;
   } catch (error) {
-    yield put(setErrorMessage(error.message));
+      yield put(setErrorMessage(error.message));
+      console.log("error.message", error.message);
     return false;
   } finally {
     yield put(sendingRequest(false));
@@ -58,11 +61,9 @@ export function* authorize({ newUser, username, password }) {
 }
 
 export function* login() {
-    // const userDetails = yield select(selectLoginPageDomain());
     const username = yield select(makeSelectLoginUsername());
     const password = yield select(makeSelectLoginPassword());
     const newUser = false;
-    console.log(username);
 
     const winner = yield race({
 	auth: call(authorize, { newUser, username, password }),
@@ -70,11 +71,9 @@ export function* login() {
     });
 
   if (winner.auth) {
-    yield put(setAuthState(true));
-    yield put(changeForm('', ''));
-//      forwardTo('/dashboard');
-//    dispatch(push('/dashboard'));
-    yield put(push('/dashboard'));
+      yield put(setAuthState(true));
+      yield put(changeForm('', ''));
+      yield put(push('/features'));
   }
 }
 
@@ -114,9 +113,7 @@ export function* callLogout() {
 }
 
 function forwardTo(location) {
-    console.log(location);
-//    push(location);
-    console.log("finish");
+//    yield put(push(location));
 }
 
 export default function* LoginData() {
