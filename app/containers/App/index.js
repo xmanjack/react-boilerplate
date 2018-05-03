@@ -14,6 +14,7 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import LoginPage from 'containers/LoginPage';
+import Dashboard from 'containers/Dashboard';
 import SmartHeader from 'containers/SmartHeader';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
@@ -42,6 +43,7 @@ export default function App() {
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
         <Route path="/login" component={LoginPage} />
+        <Route path="/dashboard" component={Dashboard} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />
