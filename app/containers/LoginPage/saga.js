@@ -69,7 +69,7 @@ export function* login() {
   if (winner.auth) {
       yield put(setAuthState(true));
       yield put(changeForm('', ''));
-      yield put(push('/features'));
+      yield put(push('/dashboard'));
   }
 }
 
@@ -103,7 +103,6 @@ export function* logout() { // eslint-disable-line consistent-return
 export function* callLogout() {
   yield put(setAuthState(false));
   yield call(logout);
-  forwardTo('/');
 }
 
 function forwardTo(location) {

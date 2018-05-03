@@ -31,7 +31,7 @@ export class SmartHeader extends React.Component { // eslint-disable-line react/
       switch(this.props.loggedIn){
       case true:
         return (
-          <HeaderLink onClick={() => this.props.dispatch(logout())} to="/">
+          <HeaderLink onClick={() => this.props.dispatch(logout())} to="/dashboard">
 	    <FormattedMessage {...messages.logout} />
           </HeaderLink>
         );
@@ -46,6 +46,7 @@ export class SmartHeader extends React.Component { // eslint-disable-line react/
         break;
       }
     }
+
     return (
       <div>
         <A href="https://twitter.com/mxstbr">
@@ -54,7 +55,7 @@ export class SmartHeader extends React.Component { // eslint-disable-line react/
           <HeaderLink to="/">
             <FormattedMessage {...messages.home} />
           </HeaderLink>
-          <HeaderLink to="/features">
+          <HeaderLink to="/dashboard/features">
             <FormattedMessage {...messages.features} />
           </HeaderLink>
           { LoginOrLogout() }
