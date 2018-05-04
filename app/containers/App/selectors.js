@@ -33,9 +33,9 @@ const makeSelectLocation = () => createSelector(
   (routeState) => routeState.get('location').toJS()
 );
 
-const makeSelectLoginloggedIn = () => createSelector(
-  selectGlobal,
-  (loginState) => loginState.get('loggedIn')
+const makeSelectLoginRefer = () => createSelector(
+  selectRoute,
+  (routeState) => routeState.getIn(['location','state','from'])
 );
 
 export {
@@ -45,5 +45,5 @@ export {
   makeSelectError,
   makeSelectRepos,
   makeSelectLocation,
-  makeSelectLoginloggedIn,
+  makeSelectLoginRefer,
 };

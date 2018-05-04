@@ -5,6 +5,7 @@ import { createSelector } from 'reselect';
  */
 const selectLoginPageDomain = (state) => state.get('loginPage');
 
+
 /**
  * Other specific selectors
  */

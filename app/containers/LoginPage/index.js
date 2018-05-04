@@ -19,7 +19,7 @@ import Input from 'components/Input';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import  makeSelectLoginUsername  from './selectors';
+import makeSelectLoginUsername  from './selectors';
 //import { selectLoginPageDomain, makeSelectLoginUsername,makeSelectLoginPassword }  from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -29,6 +29,8 @@ import { push } from 'react-router-redux';
 
 export class LoginPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/' } };
+    
     return (
       <div>
         <form onSubmit={this.props.onSubmitForm}>
@@ -79,12 +81,9 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
 
 LoginPage.propTypes = {
     onSubmitForm: PropTypes.func.isRequired,
-//    username: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
-//    loginpage: selectLoginPageDomain(),
-//    username: makeSelectLoginUsername(),
 });
 
 function mapDispatchToProps(dispatch) {

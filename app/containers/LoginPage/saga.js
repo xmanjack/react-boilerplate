@@ -7,10 +7,12 @@ import { call, cancel, select, take, takeLatest, put, race, takeEvery } from 're
 // import * as errorMessages from './errorMessages';
 import { selectLoginPageDomain, makeSelectLoginUsername, makeSelectLoginPassword } from './selectors';
 import { makeSelectUsername } from 'containers/HomePage/selectors';
+import { makeSelectLoginRefer } from 'containers/App/selectors';
 
 import auth from '../../utils/auth';
 import genSalt from '../../utils/salt';
 
+import { createSelector } from 'reselect';
 
 import { push } from 'react-router-redux';
 
@@ -57,8 +59,18 @@ export function* authorize({ newUser, username, password }) {
 }
 
 export function* login() {
-    const username = yield select(makeSelectLoginUsername());
-    const password = yield select(makeSelectLoginPassword());
+  const username = yield select(makeSelectLoginUsername());
+  const password = yield select(makeSelectLoginPassword());
+  var referurl;
+  try {
+    referurl = yield select(makeSelectLoginRefer());
+    referurl = referurl.toJS();
+  } catch (error) {
+    console.log(error.message);
+    referurl = '/dashboard';
+  }
+  console.log(username);
+  
     const newUser = false;
 
     const winner = yield race({
@@ -69,7 +81,7 @@ export function* login() {
   if (winner.auth) {
       yield put(setAuthState(true));
       yield put(changeForm('', ''));
-      yield put(push('/dashboard'));
+      yield put(push(referurl));
   }
 }
 
